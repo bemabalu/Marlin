@@ -118,6 +118,9 @@
   #define Z_MIN_PROBE_PIN                   PH11  // Z Probe must be PH11
 #endif
 
+//added Filament runout PIN
+#define FIL_RUNOUT_PIN                      PI11
+
 //
 // Steppers
 //
@@ -156,10 +159,19 @@
   #define E1_CS_PIN                         PD4
 #endif
 
-#define E2_STEP_PIN                         PD1
+/*#define E2_STEP_PIN                         PD1
 #define E2_DIR_PIN                          PD0
 #define E2_ENABLE_PIN                       PD2
 #ifndef E2_CS_PIN
+  #define E2_CS_PIN                         PC12
+#endif*/
+
+//dual Z Stepper
+
+#define Z2_STEP_PIN                         PD1
+#define Z2_DIR_PIN                          PD0
+#define Z2_ENABLE_PIN                       PD2
+#ifndef Z2_CS_PIN
   #define E2_CS_PIN                         PC12
 #endif
 
@@ -257,8 +269,15 @@
   #define E1_SERIAL_TX_PIN                  PD4
   #define E1_SERIAL_RX_PIN                  PD4
 
-  #define E2_SERIAL_TX_PIN                  PC12
+  /*#define E2_SERIAL_TX_PIN                  PC12
   #define E2_SERIAL_RX_PIN                  PC12
+  */
+
+
+//Dual Z
+  #define Z2_SERIAL_TX_PIN                  PC12
+  #define Z2_SERIAL_RX_PIN                  PC12
+
 
   #if ENABLED(M5_EXTENDER)
     #define E3_SERIAL_TX_PIN                PG4
