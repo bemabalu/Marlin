@@ -48,6 +48,14 @@ void _mmu2_load_filament(uint8_t index) {
   mmu2.load_filament(index);
   ui.reset_status();
 }
+
+void _mmu2_cut_filament(uint8_t index)
+{
+  ui.return_to_status();
+  ui.status_printf_P(0, GET_TEXT(MSG_MMU2_CUTTING_FILAMENT), int(index + 1));
+  mmu2.cut_filament(index);
+  ui.reset_status();
+}
 void action_mmu2_load_all() {
   LOOP_L_N(i, EXTRUDERS) _mmu2_load_filament(i);
   ui.return_to_status();
@@ -58,6 +66,17 @@ void menu_mmu2_load_filament() {
   BACK_ITEM(MSG_MMU2_MENU);
   ACTION_ITEM(MSG_MMU2_ALL, action_mmu2_load_all);
   LOOP_L_N(i, EXTRUDERS) ACTION_ITEM_N(i, MSG_MMU2_FILAMENT_N, []{ _mmu2_load_filament(MenuItemBase::itemIndex); });
+  END_MENU();
+}
+
+void menu_mmu2_cut_filament()
+{
+  START_MENU();
+  BACK_ITEM(MSG_MMU2_MENU);
+
+  LOOP_L_N(i, EXTRUDERS)
+  ACTION_ITEM_N(i, MSG_MMU2_FILAMENT_N, []
+                { _mmu2_cut_filament(MenuItemBase::itemIndex); });
   END_MENU();
 }
 
@@ -109,6 +128,7 @@ void menu_mmu2() {
   SUBMENU(MSG_MMU2_LOAD_FILAMENT, menu_mmu2_load_filament);
   SUBMENU(MSG_MMU2_LOAD_TO_NOZZLE, menu_mmu2_load_to_nozzle);
   SUBMENU(MSG_MMU2_EJECT_FILAMENT, menu_mmu2_eject_filament);
+  SUBMENU(MSG_MMU2_CUT_FILAMENT, menu_mmu2_cut_filament);
   ACTION_ITEM(MSG_MMU2_UNLOAD_FILAMENT, action_mmu2_unload_filament);
   ACTION_ITEM(MSG_MMU2_RESET, action_mmu2_reset);
   END_MENU();

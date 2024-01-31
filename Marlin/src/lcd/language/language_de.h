@@ -528,9 +528,11 @@ namespace Language_de {
   PROGMEM Language_Str MSG_MMU2_LOAD_ALL                   = _UxGT("Lade alle");
   PROGMEM Language_Str MSG_MMU2_LOAD_TO_NOZZLE             = _UxGT("Düse laden");
   PROGMEM Language_Str MSG_MMU2_EJECT_FILAMENT             = _UxGT("Filament auswerfen");
+  PROGMEM Language_Str MSG_MMU2_CUT_FILAMENT = _UxGT("Filament schneiden");
   PROGMEM Language_Str MSG_MMU2_EJECT_FILAMENT_N           = _UxGT("Filament ~ auswerfen");
   PROGMEM Language_Str MSG_MMU2_UNLOAD_FILAMENT            = _UxGT("Filament entladen ");
   PROGMEM Language_Str MSG_MMU2_LOADING_FILAMENT           = _UxGT("Lade Fila. %i...");
+  PROGMEM Language_Str MSG_MMU2_CUTTING_FILAMENT = _UxGT("Schneide Fila. %i...");
   PROGMEM Language_Str MSG_MMU2_EJECTING_FILAMENT          = _UxGT("Fila. auswerfen...");
   PROGMEM Language_Str MSG_MMU2_UNLOADING_FILAMENT         = _UxGT("Fila. entladen...");
   PROGMEM Language_Str MSG_MMU2_ALL                        = _UxGT("Alle");

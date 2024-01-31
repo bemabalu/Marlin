@@ -51,7 +51,7 @@
   #define TOOL_SENSOR2_PIN                  PI4
   //#define TOOL_SENSOR3_PIN                PF4
 #else
-  #define PS_ON_PIN                         PH6
+#define PS_ON_PIN PH6
 #endif
 
 //

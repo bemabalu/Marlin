@@ -44,13 +44,14 @@ public:
   static void init();
   static void reset();
   static void mmu_loop();
-  static void tool_change(const uint8_t index);
+  static void tool_change(const uint8_t index, const uint8_t retry = 0);
   static void tool_change(const char *special);
   static uint8_t get_current_tool();
   static void set_filament_type(const uint8_t index, const uint8_t type);
 
   static bool unload();
   static void load_filament(uint8_t);
+  static void cut_filament(uint8_t);
   static void load_all();
   static bool load_filament_to_nozzle(const uint8_t index);
   static bool eject_filament(const uint8_t index, const bool recover);
@@ -71,22 +72,22 @@ private:
   static void manage_response(const bool move_axes, const bool turn_off_nozzle);
 
   static void load_to_nozzle();
-  static void execute_extruder_sequence(const E_Step * sequence, int steps);
+  static void execute_extruder_sequence(const E_Step *sequence, int steps);
 
   static void filament_runout();
 
-  #if HAS_PRUSA_MMU2S
-    static bool mmu2s_triggered;
-    static void check_filament();
-    static bool can_load();
-    static bool load_to_gears();
-  #else
-    FORCE_INLINE static bool load_to_gears() { return true; }
-  #endif
+#if HAS_PRUSA_MMU2S
+  static bool mmu2s_triggered;
+  static void check_filament();
+  static bool can_load();
+  static bool load_to_gears();
+#else
+  FORCE_INLINE static bool load_to_gears() { return true; }
+#endif
 
-  #if ENABLED(MMU_EXTRUDER_SENSOR)
-    static void mmu_continue_loading();
-  #endif
+#if ENABLED(MMU_EXTRUDER_SENSOR)
+  static void mmu_continue_loading();
+#endif
 
   static bool enabled, ready, mmu_print_saved;
 
@@ -104,7 +105,6 @@ private:
       if (valid) runout.reset();
     #endif
   }
-
 };
 
 extern MMU2 mmu2;

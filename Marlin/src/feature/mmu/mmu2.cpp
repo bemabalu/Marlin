@@ -69,13 +69,14 @@ MMU2 mmu2;
 #define MMU_CMD_E0   0x50  // up to supported filaments
 #define MMU_CMD_R0   0x60
 #define MMU_CMD_F0   0x70  // up to supported filaments
+#define MMU_CMD_K0 0x80  // up to supported filaments
 
 #define MMU_REQUIRED_FW_BUILDNR TERN(MMU2_MODE_12V, 132, 126)
 
 #define MMU2_NO_TOOL 99
-#define MMU_BAUD    115200
+#define MMU_BAUD 115200
 
-bool MMU2::enabled, MMU2::ready, MMU2::mmu_print_saved;
+  bool MMU2::enabled, MMU2::ready, MMU2::mmu_print_saved;
 #if HAS_PRUSA_MMU2S
   bool MMU2::mmu2s_triggered;
 #endif
@@ -112,15 +113,16 @@ void MMU2::init() {
   #if PIN_EXISTS(MMU2_RST)
     WRITE(MMU2_RST_PIN, HIGH);
     SET_OUTPUT(MMU2_RST_PIN);
-  #endif
+    WRITE(MMU2_RST_PIN, HIGH);
+#endif
 
-  MMU2_SERIAL.begin(MMU_BAUD);
-  extruder = MMU2_NO_TOOL;
+    MMU2_SERIAL.begin(MMU_BAUD);
+    extruder = MMU2_NO_TOOL;
 
-  safe_delay(10);
-  reset();
-  rx_buffer[0] = '\0';
-  state = -1;
+    safe_delay(10);
+    reset();
+    rx_buffer[0] = '\0';
+    state = -1;
 }
 
 void MMU2::reset() {
@@ -130,9 +132,11 @@ void MMU2::reset() {
     WRITE(MMU2_RST_PIN, LOW);
     safe_delay(20);
     WRITE(MMU2_RST_PIN, HIGH);
-  #else
-    MMU2_COMMAND("X0"); // Send soft reset
-  #endif
+    safe_delay(2000);   // added 2s delay for testing BM
+    MMU2_COMMAND("X0"); // Send soft reset Added BM for testing
+#else
+  MMU2_COMMAND("X0"); // Send soft reset
+#endif
 }
 
 uint8_t MMU2::get_current_tool() {
@@ -240,6 +244,14 @@ void MMU2::mmu_loop() {
           int filament = cmd - MMU_CMD_L0;
           DEBUG_ECHOLNPAIR("MMU <= L", filament);
           tx_printf_P(PSTR("L%d\n"), filament);
+          state = 3; // wait for response
+        }
+        else if (WITHIN(cmd, MMU_CMD_K0, MMU_CMD_K0 + EXTRUDERS - 1))
+        {
+          // load
+          int filament = cmd - MMU_CMD_K0;
+          DEBUG_ECHOLNPAIR("MMU <= K", filament);
+          tx_printf_P(PSTR("K%d\n"), filament);
           state = 3; // wait for response
         }
         else if (cmd == MMU_CMD_C0) {
@@ -478,7 +490,8 @@ static void mmu2_not_responding() {
   /**
    * Handle tool change
    */
-  void MMU2::tool_change(const uint8_t index) {
+  void MMU2::tool_change(const uint8_t index, const uint8_t retry)
+  {
 
     if (!enabled) return;
 
@@ -498,12 +511,31 @@ static void mmu2_not_responding() {
         ENABLE_AXIS_E0();
         SERIAL_ECHO_MSG(STR_ACTIVE_EXTRUDER, extruder);
       }
+      else // failure, retry with cutting Filament
+      {
+        if (retry < 3)
+        {
+          ui.status_printf_P(0, "Laden fehlgeschlagen, schneiden", int(index + 1));
+          unload();
+          cut_filament(index);
+          tool_change(index, retry + 1);
+        }
+        else
+          filament_runout();
+      }
       ui.reset_status();
     }
 
     set_runout_valid(true);
   }
 
+  void MMU2::cut_filament(const uint8_t index)
+  {
+    if (!enabled)
+      return;
+    command(MMU_CMD_K0 + index);
+    manage_response(false, false);
+  }
   /**
    * Handle special T?/Tx/Tc commands
    *
@@ -522,28 +554,29 @@ static void mmu2_not_responding() {
             const uint8_t index = mmu2_choose_filament();
             while (!thermalManager.wait_for_hotend(active_extruder, false)) safe_delay(100);
             load_filament_to_nozzle(index);
-          #else
-            BUZZ(400, 40);
-          #endif
+#else
+          BUZZ(400, 40);
+#endif
         } break;
 
         case 'x': {
-          #if ENABLED(MMU2_MENUS)
-            planner.synchronize();
-            const uint8_t index = mmu2_choose_filament();
-            DISABLE_AXIS_E0();
-            command(MMU_CMD_T0 + index);
-            manage_response(true, true);
+#if ENABLED(MMU2_MENUS)
+          planner.synchronize();
+          const uint8_t index = mmu2_choose_filament();
+          DISABLE_AXIS_E0();
+          command(MMU_CMD_T0 + index);
+          manage_response(true, true);
 
-            if (load_to_gears()) {
-              mmu_loop();
-              ENABLE_AXIS_E0();
-              extruder = index;
-              active_extruder = 0;
-            }
-          #else
-            BUZZ(400, 40);
-          #endif
+          if (load_to_gears())
+          {
+            mmu_loop();
+            ENABLE_AXIS_E0();
+            extruder = index;
+            active_extruder = 0;
+          }
+#else
+          BUZZ(400, 40);
+#endif
         } break;
 
         case 'c': {
