@@ -54,7 +54,7 @@ namespace LanguageNarrow_de {
   LSTR MSG_LCD_SOFT_ENDSTOPS              = _UxGT("Software-Endstopp");
   LSTR MSG_MAIN_MENU                      = _UxGT("Hauptmenü");
   LSTR MSG_ADVANCED_SETTINGS              = _UxGT("Erw. Einstellungen");
-  LSTR MSG_CONFIGURATION                  = _UxGT("Konfiguration");
+    LSTR MSG_CONFIGURATION                  = _UxGT("Konfiguration");
   LSTR MSG_RUN_AUTO_FILES                 = _UxGT("Autostart");
   LSTR MSG_DISABLE_STEPPERS               = _UxGT("Motoren deaktivieren"); // M84 :: Max length 19 characters
   LSTR MSG_DEBUG_MENU                     = _UxGT("Debug-Menü");
@@ -92,23 +92,23 @@ namespace LanguageNarrow_de {
   LSTR MSG_TRAMMING_WIZARD                = _UxGT("Tramming Assistent");
   LSTR MSG_SELECT_ORIGIN                  = _UxGT("Wählen Sie Ursprung");
   LSTR MSG_LAST_VALUE_SP                  = _UxGT("Letzter Wert ");
-
-  LSTR MSG_PREHEAT_1                      = PREHEAT_1_LABEL _UxGT(" Vorwärmen");
-  LSTR MSG_PREHEAT_1_H                    = PREHEAT_1_LABEL _UxGT(" Vorwärmen ~");
-  LSTR MSG_PREHEAT_1_END                  = PREHEAT_1_LABEL _UxGT(" Extr. Vorwärmen");
-  LSTR MSG_PREHEAT_1_END_E                = PREHEAT_1_LABEL _UxGT(" Extr. Vorwärm. ~");
-  LSTR MSG_PREHEAT_1_ALL                  = PREHEAT_1_LABEL _UxGT(" Alles Vorwärmen");
-  LSTR MSG_PREHEAT_1_BEDONLY              = PREHEAT_1_LABEL _UxGT(" Bett Vorwärmen");
-  LSTR MSG_PREHEAT_1_SETTINGS             = PREHEAT_1_LABEL _UxGT(" Einstellungen");
-
-  LSTR MSG_PREHEAT_M                      = _UxGT("$ Vorwärmen");
-  LSTR MSG_PREHEAT_M_H                    = _UxGT("$ Vorwärmen") " ~";
-  LSTR MSG_PREHEAT_M_END                  = _UxGT("$ Extr. Vorwärmen");
-  LSTR MSG_PREHEAT_M_END_E                = _UxGT("$ Extr. Vorwärm. ~");
-  LSTR MSG_PREHEAT_M_ALL                  = _UxGT("$ Alles Vorwärmen");
-  LSTR MSG_PREHEAT_M_BEDONLY              = _UxGT("$ Bett Vorwärmen");
-  LSTR MSG_PREHEAT_M_SETTINGS             = _UxGT("$ Einstellungen");
-
+  
+    LSTR MSG_PREHEAT_1                      = PREHEAT_1_LABEL _UxGT(" Vorwärmen");
+    LSTR MSG_PREHEAT_1_H                    = PREHEAT_1_LABEL _UxGT(" Vorwärmen ~");
+    LSTR MSG_PREHEAT_1_END                  = PREHEAT_1_LABEL _UxGT(" Extr. Vorwärmen");
+    LSTR MSG_PREHEAT_1_END_E                = PREHEAT_1_LABEL _UxGT(" Extr. Vorwärm. ~");
+    LSTR MSG_PREHEAT_1_ALL                  = PREHEAT_1_LABEL _UxGT(" Alles Vorwärmen");
+    LSTR MSG_PREHEAT_1_BEDONLY              = PREHEAT_1_LABEL _UxGT(" Bett Vorwärmen");
+    LSTR MSG_PREHEAT_1_SETTINGS             = PREHEAT_1_LABEL _UxGT(" Einstellungen");
+    
+      LSTR MSG_PREHEAT_M                      = _UxGT("$ Vorwärmen");
+      LSTR MSG_PREHEAT_M_H                    = _UxGT("$ Vorwärmen") " ~";
+    LSTR MSG_PREHEAT_M_END                  = _UxGT("$ Extr. Vorwärmen");
+    LSTR MSG_PREHEAT_M_END_E                = _UxGT("$ Extr. Vorwärm. ~");
+    LSTR MSG_PREHEAT_M_ALL                  = _UxGT("$ Alles Vorwärmen");
+    LSTR MSG_PREHEAT_M_BEDONLY              = _UxGT("$ Bett Vorwärmen");
+    LSTR MSG_PREHEAT_M_SETTINGS             = _UxGT("$ Einstellungen");
+  
   LSTR MSG_PREHEAT_CUSTOM                 = _UxGT("benutzerdef. Heizen");
   LSTR MSG_COOLDOWN                       = _UxGT("Abkühlen");
 
@@ -176,6 +176,7 @@ namespace LanguageNarrow_de {
   LSTR MSG_HOTEND_OFFSET_A                = _UxGT("2. Düse @");
   LSTR MSG_UBL_DOING_G29                  = _UxGT("G29 ausführen");
   LSTR MSG_UBL_TOOLS                      = _UxGT("UBL-Werkzeuge");
+  LSTR MSG_UBL_LEVEL_BED                  = _UxGT("Unified Bed Leveling");
   LSTR MSG_LCD_TILTING_MESH               = _UxGT("Berührungspunkt");
   LSTR MSG_UBL_TILT_MESH                  = _UxGT("Tilt Mesh");
   LSTR MSG_UBL_TILTING_GRID               = _UxGT("Tilting Grid Size");
@@ -605,13 +606,13 @@ namespace LanguageNarrow_de {
   LSTR MSG_LOCKSCREEN_UNLOCK              = _UxGT("Scrollen zum Entsper.");
 
   LSTR MSG_PLEASE_WAIT_REBOOT             = _UxGT("Auf Neustart warten");
-  LSTR MSG_PLEASE_PREHEAT                 = _UxGT("Bitte vorheizen");
-  LSTR MSG_INFO_PRINT_COUNT               = _UxGT("Drucke");
-  LSTR MSG_INFO_COMPLETED_PRINTS          = _UxGT("Komplette");
-  LSTR MSG_INFO_PRINT_TIME                = _UxGT("Gesamte");
+    LSTR MSG_PLEASE_PREHEAT                 = _UxGT("Bitte vorheizen");
+    LSTR MSG_INFO_PRINT_COUNT               = _UxGT("Drucke");
+    LSTR MSG_INFO_COMPLETED_PRINTS          = _UxGT("Komplette");
+    LSTR MSG_INFO_PRINT_TIME                = _UxGT("Gesamte");
   LSTR MSG_INFO_PRINT_LONGEST             = _UxGT("Längste");
-  LSTR MSG_INFO_PRINT_FILAMENT            = _UxGT("Extrud.");
-
+    LSTR MSG_INFO_PRINT_FILAMENT            = _UxGT("Extrud.");
+  
   LSTR MSG_INFO_MIN_TEMP                  = _UxGT("Min Temp");
   LSTR MSG_INFO_MAX_TEMP                  = _UxGT("Max Temp");
   LSTR MSG_INFO_PSU                       = _UxGT("Netzteil");
@@ -651,6 +652,10 @@ namespace LanguageNarrow_de {
   LSTR MSG_MMU2_EJECT_FILAMENT_N          = _UxGT("Filament ~ auswerfen");
   LSTR MSG_MMU2_UNLOAD_FILAMENT           = _UxGT("Filament entladen ");
   LSTR MSG_MMU2_LOADING_FILAMENT          = _UxGT("Lade Fila. %i...");
+  LSTR MSG_MMU2_LOADING_FAILED            = _UxGT("Lade Fil. fehlgeschlagen");
+  LSTR MSG_MMU2_LOADING_FAILED_CUT        = _UxGT("Ladefehler, schneiden");
+  LSTR MSG_MMU2_CUT_FILAMENT              = _UxGT("Filament schneiden");
+  LSTR MSG_MMU2_CUTTING_FILAMENT          = _UxGT("Schneide Fil. %i...");
   LSTR MSG_MMU2_EJECTING_FILAMENT         = _UxGT("Fila. auswerfen...");
   LSTR MSG_MMU2_UNLOADING_FILAMENT        = _UxGT("Fila. entladen...");
   LSTR MSG_MMU2_ALL                       = _UxGT("Alle");
@@ -700,19 +705,19 @@ namespace LanguageNarrow_de {
 
   //
   // Die Filament-Change-Bildschirme können bis zu 2 Zeilen auf einem 3-Zeilen-Display.
-  //
-  LSTR MSG_ADVANCED_PAUSE_WAITING         = _UxGT(MSG_1_LINE("Klick zum Fortsetzen"));
-  LSTR MSG_PAUSE_PRINT_PARKING            = _UxGT(MSG_1_LINE("Pausiert..."));
-  LSTR MSG_FILAMENT_CHANGE_INIT           = _UxGT(MSG_1_LINE("Bitte warten..."));
-  LSTR MSG_FILAMENT_CHANGE_INSERT         = _UxGT(MSG_1_LINE("Laden und Klick"));
-  LSTR MSG_FILAMENT_CHANGE_HEAT           = _UxGT(MSG_1_LINE("Klick zum Heizen"));
-  LSTR MSG_FILAMENT_CHANGE_HEATING        = _UxGT(MSG_1_LINE("Heizen..."));
-  LSTR MSG_FILAMENT_CHANGE_UNLOAD         = _UxGT(MSG_1_LINE("Entnehmen..."));
-  LSTR MSG_FILAMENT_CHANGE_LOAD           = _UxGT(MSG_1_LINE("Laden..."));
-  LSTR MSG_FILAMENT_CHANGE_PURGE          = _UxGT(MSG_1_LINE("Spülen..."));
-  LSTR MSG_FILAMENT_CHANGE_CONT_PURGE     = _UxGT(MSG_2_LINE("Klick zum beenden", "der Düsenspülung"));
-  LSTR MSG_FILAMENT_CHANGE_RESUME         = _UxGT(MSG_1_LINE("Fortsetzen..."));
-
+//
+    LSTR MSG_ADVANCED_PAUSE_WAITING         = _UxGT(MSG_1_LINE("Klick zum Fortsetzen"));
+    LSTR MSG_PAUSE_PRINT_PARKING            = _UxGT(MSG_1_LINE("Pausiert..."));
+    LSTR MSG_FILAMENT_CHANGE_INIT           = _UxGT(MSG_1_LINE("Bitte warten..."));
+    LSTR MSG_FILAMENT_CHANGE_INSERT         = _UxGT(MSG_1_LINE("Laden und Klick"));
+    LSTR MSG_FILAMENT_CHANGE_HEAT           = _UxGT(MSG_1_LINE("Klick zum Heizen"));
+    LSTR MSG_FILAMENT_CHANGE_HEATING        = _UxGT(MSG_1_LINE("Heizen..."));
+    LSTR MSG_FILAMENT_CHANGE_UNLOAD         = _UxGT(MSG_1_LINE("Entnehmen..."));
+    LSTR MSG_FILAMENT_CHANGE_LOAD           = _UxGT(MSG_1_LINE("Laden..."));
+    LSTR MSG_FILAMENT_CHANGE_PURGE          = _UxGT(MSG_1_LINE("Spülen..."));
+    LSTR MSG_FILAMENT_CHANGE_CONT_PURGE     = _UxGT(MSG_2_LINE("Klick zum beenden", "der Düsenspülung"));
+    LSTR MSG_FILAMENT_CHANGE_RESUME         = _UxGT(MSG_1_LINE("Fortsetzen..."));
+  
   LSTR MSG_TMC_DRIVERS                    = _UxGT("TMC Treiber"); // Max length 18 characters
   LSTR MSG_TMC_CURRENT                    = _UxGT("Treiber Strom");
   LSTR MSG_TMC_HYBRID_THRS                = _UxGT("Hybrid threshold");
@@ -728,8 +733,8 @@ namespace LanguageNarrow_de {
   LSTR MSG_LEVEL_X_AXIS                   = _UxGT("X Achse leveln");
   LSTR MSG_AUTO_CALIBRATE                 = _UxGT("Auto. Kalibiren");
   LSTR MSG_FTDI_HEATER_TIMEOUT            = _UxGT("Idle Timeout, Temperatur gefallen. Drücke Okay, um erneut aufzuheizen und fortzufahren.");
-  LSTR MSG_HEATER_TIMEOUT                 = _UxGT("Heizungs Timeout");
-  LSTR MSG_REHEAT                         = _UxGT("Erneut aufheizen");
+    LSTR MSG_HEATER_TIMEOUT                 = _UxGT("Heizungs Timeout");
+    LSTR MSG_REHEAT                         = _UxGT("Erneut aufheizen");
   LSTR MSG_REHEATING                      = _UxGT("Erneut aufhei. ...");
   LSTR MSG_REHEATDONE                     = _UxGT("Aufwärmen fertig");
 
