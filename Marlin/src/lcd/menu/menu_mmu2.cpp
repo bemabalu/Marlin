@@ -34,10 +34,10 @@
 //
 
 inline void action_mmu2_load_to_nozzle(const uint8_t tool) {
-  ui.return_to_status();
+    ui.return_to_status();
   ui.status_printf(0, GET_TEXT_F(MSG_MMU2_LOADING_FILAMENT), int(tool + 1));
   if (mmu2.load_to_nozzle(tool)) ui.reset_status();
-}
+  }
 
 void _mmu2_load_to_feeder(const uint8_t index) {
   ui.return_to_status();
@@ -58,6 +58,23 @@ void menu_mmu2_load_filament() {
   EXTRUDER_LOOP() ACTION_ITEM_N(e, MSG_MMU2_FILAMENT_N, []{ _mmu2_load_to_feeder(MenuItemBase::itemIndex); });
   END_MENU();
 }
+
+void _mmu2_cut_filament(uint8_t index)
+{
+  ui.return_to_status();
+  ui.status_printf(0, GET_TEXT_F(MSG_MMU2_CUTTING_FILAMENT), int(index + 1));
+  mmu2.cut_filament(index);
+  ui.reset_status();
+}
+
+void menu_mmu2_cut_filament()
+{
+  START_MENU();
+  BACK_ITEM(MSG_MMU2_MENU);
+  EXTRUDER_LOOP() ACTION_ITEM_N(e, MSG_MMU2_FILAMENT_N, []{ _mmu2_cut_filament(MenuItemBase::itemIndex); });
+  END_MENU();
+}
+
 
 void menu_mmu2_load_to_nozzle() {
   START_MENU();
@@ -107,7 +124,8 @@ void menu_mmu2() {
   SUBMENU(MSG_MMU2_LOAD_FILAMENT, menu_mmu2_load_filament);
   SUBMENU(MSG_MMU2_LOAD_TO_NOZZLE, menu_mmu2_load_to_nozzle);
   SUBMENU(MSG_MMU2_EJECT_FILAMENT, menu_mmu2_eject_filament);
-  ACTION_ITEM(MSG_MMU2_UNLOAD_FILAMENT, action_mmu2_unload_filament);
+  SUBMENU(MSG_MMU2_CUT_FILAMENT, menu_mmu2_cut_filament);
+    ACTION_ITEM(MSG_MMU2_UNLOAD_FILAMENT, action_mmu2_unload_filament);
   ACTION_ITEM(MSG_MMU2_RESET, action_mmu2_reset);
   END_MENU();
 }
