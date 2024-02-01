@@ -45,7 +45,7 @@ public:
   static void reset();
   static bool enabled() { return _enabled; }
   static void mmu_loop();
-  static void tool_change(const uint8_t index);
+  static void tool_change(const uint8_t index, const uint8_t retry = 0);
   static void tool_change(const char *special);
   static int8_t get_current_tool();
   static void set_filament_type(const uint8_t index, const uint8_t type);
@@ -53,6 +53,7 @@ public:
   static bool unload();
   static void load_to_feeder(const uint8_t index);
   static bool load_to_nozzle(const uint8_t index);
+  static void cut_filament(const uint8_t index);
   static bool eject_filament(const uint8_t index, const bool recover);
 
 private:
@@ -96,7 +97,7 @@ private:
   static int8_t state;
   static volatile int8_t finda;
   static volatile bool finda_runout_valid;
-  static millis_t prev_request, prev_P0_request;
+    static millis_t prev_request, prev_P0_request;
   static char rx_buffer[MMU_RX_SIZE], tx_buffer[MMU_TX_SIZE];
 
   static void set_runout_valid(const bool valid) {

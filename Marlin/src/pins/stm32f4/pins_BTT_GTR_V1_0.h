@@ -50,7 +50,7 @@
   #define TOOL_SENSOR2_PIN                  PI4
   //#define TOOL_SENSOR3_PIN                PF4
 #else
-  #define PS_ON_PIN                         PH6
+  #define PS_ON_PIN                         PH6  
 #endif
 
 //
@@ -106,33 +106,19 @@
 // Pins on the extender
 //
 #if ENABLED(M5_EXTENDER)
-  #ifndef X2_STOP_PIN
-    #define X2_STOP_PIN                     PI4   // M5 M1_STOP
-  #endif
-  #ifndef Y2_STOP_PIN
-    #define Y2_STOP_PIN                     PF12  // M5 M5_STOP
-  #endif
-  #ifndef Z2_STOP_PIN
-    #define Z2_STOP_PIN                     PF4   // M5 M2_STOP
-  #endif
-  #ifndef Z3_STOP_PIN
-    #define Z3_STOP_PIN                     PI7   // M5 M4_STOP
-  #endif
-  #ifndef Z4_STOP_PIN
-    #define Z4_STOP_PIN                     PF6   // M5 M3_STOP
-  #endif
+  #define X2_STOP_PIN                       PI4   // M5 M1_STOP
+  #define Y2_STOP_PIN                       PF12  // M5 M5_STOP
+  #define Z2_STOP_PIN                       PF4   // M5 M2_STOP
+  #define Z3_STOP_PIN                       PI7   // M5 M4_STOP
+  #define Z4_STOP_PIN                       PF6   // M5 M3_STOP
 #endif
 
 #ifndef Z_MIN_PROBE_PIN
   #define Z_MIN_PROBE_PIN                   PH11  // Z Probe must be PH11
 #endif
 
-//
-// Probe enable
-//
-#if ENABLED(PROBE_ENABLE_DISABLE) && !defined(PROBE_ENABLE_PIN)
-  #define PROBE_ENABLE_PIN            SERVO0_PIN
-#endif
+// added Filament runout PIN
+#define FIL_RUNOUT_PIN PI11
 
 //
 // Steppers
@@ -172,11 +158,20 @@
   #define E1_CS_PIN                         PD4
 #endif
 
-#define E2_STEP_PIN                         PD1
+/*#define E2_STEP_PIN                         PD1
 #define E2_DIR_PIN                          PD0
 #define E2_ENABLE_PIN                       PD2
 #ifndef E2_CS_PIN
   #define E2_CS_PIN                         PC12
+#endif*/
+
+// dual Z Stepper
+
+#define Z2_STEP_PIN PD1
+#define Z2_DIR_PIN PD0
+#define Z2_ENABLE_PIN PD2
+#ifndef Z2_CS_PIN
+  #define Z2_CS_PIN PC12
 #endif
 
 #if ENABLED(M5_EXTENDER)
@@ -222,11 +217,11 @@
 // SPI pins for TMC2130 stepper drivers
 //
 #ifndef TMC_SPI_MOSI
-  #define TMC_SPI_MOSI                      PG15
-#endif
-#ifndef TMC_SPI_MISO
-  #define TMC_SPI_MISO                      PB6
-#endif
+    #define TMC_SPI_MOSI                      PG15
+    #endif
+  #ifndef TMC_SPI_MISO
+    #define TMC_SPI_MISO                      PB6
+  #endif
 #ifndef TMC_SPI_SCK
   #define TMC_SPI_SCK                       PB3
 #endif
@@ -268,8 +263,12 @@
   #define E1_SERIAL_TX_PIN                  PD4
   #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
 
-  #define E2_SERIAL_TX_PIN                  PC12
-  #define E2_SERIAL_RX_PIN      E2_SERIAL_TX_PIN
+  /*  #define E2_SERIAL_TX_PIN                  PC12
+    #define E2_SERIAL_RX_PIN      E2_SERIAL_TX_PIN
+  */
+  // Dual Z
+  #define Z2_SERIAL_TX_PIN PC12
+  #define Z2_SERIAL_RX_PIN PC12
 
   #if ENABLED(M5_EXTENDER)
     #define E3_SERIAL_TX_PIN                PG4
@@ -291,7 +290,7 @@
   // Reduce baud rate to improve software serial reliability
   #ifndef TMC_BAUD_RATE
     #define TMC_BAUD_RATE                  19200
-  #endif
+#endif
 
 #endif // HAS_TMC_UART
 
@@ -301,6 +300,9 @@
 #define TEMP_0_PIN                          PC1   // T1 <-> E0
 #define TEMP_1_PIN                          PC2   // T2 <-> E1
 #define TEMP_2_PIN                          PC3   // T3 <-> E2
+
+// added Pinda V2 Temp Comp Pin
+#define TEMP_PROBE_PIN PC3
 
 #if ENABLED(M5_EXTENDER)
   #define TEMP_3_PIN                        PA3   // M5 TEMP1
