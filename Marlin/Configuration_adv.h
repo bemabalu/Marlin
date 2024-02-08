@@ -2429,8 +2429,8 @@
  * Use M871 to set temperature/offset values manually.
  * For more details see https://marlinfw.org/docs/features/probe_temp_compensation.html
  */
-#define PTC_PROBE    // Compensate based on probe temperature
-#define PTC_BED      // Compensate based on bed temperature
+//#define PTC_PROBE    // Compensate based on probe temperature
+//#define PTC_BED      // Compensate based on bed temperature
 //#define PTC_HOTEND   // Compensate based on hotend temperature
 
 #if ANY(PTC_PROBE, PTC_BED, PTC_HOTEND)
@@ -3443,7 +3443,7 @@
    *
    * Values from 0..1023, -1 to disable homing phase for that axis.
    */
-   #define TMC_HOME_PHASE { 896, 896, 896 }
+   #define TMC_HOME_PHASE { 896, 896, -1 }
 
   /**
    * Step on both rising and falling edge signals (as with a square wave).
