@@ -573,7 +573,7 @@
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
 #define TEMP_SENSOR_BED 1
-#define TEMP_SENSOR_PROBE 1
+#define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 #define TEMP_SENSOR_COOLER 0
 #define TEMP_SENSOR_BOARD 0
@@ -1599,7 +1599,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 23, 5, -0.950 }
+#define NOZZLE_TO_PROBE_OFFSET { 23, 5, -2.137 }
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1609,7 +1609,7 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 10
+#define PROBING_MARGIN 0
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_FEEDRATE (133*60)
@@ -1847,7 +1847,7 @@
 #define Y_MIN_POS -3
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE+5
-#define Y_MAX_POS Y_BED_SIZE+19
+#define Y_MAX_POS Y_BED_SIZE+15
 #define Z_MAX_POS 200
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
@@ -2166,16 +2166,16 @@
   //========================= Unified Bed Leveling ============================
   //===========================================================================
 
-  //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
+  #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
   #define MESH_INSET 5              // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
-  //#define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
+  #define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
 
-  //#define UBL_TILT_ON_MESH_POINTS         // Use nearest mesh points with G29 J for better Z reference
-  //#define UBL_TILT_ON_MESH_POINTS_3POINT  // Use nearest mesh points with G29 J0 (3-point)
+  #define UBL_TILT_ON_MESH_POINTS         // Use nearest mesh points with G29 J for better Z reference
+  #define UBL_TILT_ON_MESH_POINTS_3POINT  // Use nearest mesh points with G29 J0 (3-point)
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
   #define UBL_SAVE_ACTIVE_ON_M500   // Save the currently active mesh in the current slot on M500
@@ -2183,7 +2183,7 @@
   //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // When the nozzle is off the mesh, this value is used
                                           // as the Z-Height correction value.
 
-  //#define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
+  #define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
 
 /**
    * Probing not allowed within the position of an obstacle.
@@ -2231,16 +2231,16 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-//#define LCD_BED_TRAMMING
+#define LCD_BED_TRAMMING
 
 #if ENABLED(LCD_BED_TRAMMING)
-  #define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
+  #define BED_TRAMMING_INSET_LFRB { 23, 3, 0, 0 } // (mm) Left, Front, Right, Back insets
   #define BED_TRAMMING_HEIGHT      0.0        // (mm) Z height of nozzle at tramming points
   #define BED_TRAMMING_Z_HOP       4.0        // (mm) Z height of nozzle between tramming points
   //#define BED_TRAMMING_INCLUDE_CENTER       // Move to the center after the last corner
-  //#define BED_TRAMMING_USE_PROBE
+  #define BED_TRAMMING_USE_PROBE
   #if ENABLED(BED_TRAMMING_USE_PROBE)
-    #define BED_TRAMMING_PROBE_TOLERANCE 0.1  // (mm)
+    #define BED_TRAMMING_PROBE_TOLERANCE 0.01  // (mm)
     #define BED_TRAMMING_VERIFY_RAISED        // After adjustment triggers the probe, re-probe to verify
     //#define BED_TRAMMING_AUDIO_FEEDBACK
   #endif
@@ -2504,7 +2504,7 @@
 
   // Specify positions for each tool as { { X, Y, Z }, { X, Y, Z } }
   // Dual hotend system may use { {  -20, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) },  {  420, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) }}
-  #define NOZZLE_CLEAN_START_POINT { {  125, 229, (Z_MIN_POS + 0) } }
+  #define NOZZLE_CLEAN_START_POINT { {  125, 225, (Z_MIN_POS + 0) } }
   #define NOZZLE_CLEAN_END_POINT   { { 175, 220, (Z_MIN_POS + 0) } }
 
   #if ENABLED(NOZZLE_CLEAN_PATTERN_CIRCLE)
