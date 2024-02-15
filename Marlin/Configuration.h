@@ -1259,7 +1259,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 100, 120 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 120 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1272,7 +1272,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 200, 5000 }
+#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 1000, 5000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1608,10 +1608,10 @@
 #define XY_PROBE_FEEDRATE (200*60)//(133*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST (100*60)//(4*60)
+#define Z_PROBE_FEEDRATE_FAST (50*60)//(4*60)
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
+#define Z_PROBE_FEEDRATE_SLOW Z_PROBE_FEEDRATE_FAST //(Z_PROBE_FEEDRATE_FAST / 2)
 
 /**
  * Probe Activation Switch
@@ -1677,7 +1677,7 @@
  */
 #define Z_CLEARANCE_DEPLOY_PROBE   0 // (mm) Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  1 // (mm) Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE     1 // (mm) Z Clearance between multiple probes
+#define Z_CLEARANCE_MULTI_PROBE     0.5 // (mm) Z Clearance between multiple probes
 #define Z_PROBE_ERROR_TOLERANCE     1 // (mm) Tolerance for early trigger (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Z position after probing is done
 
